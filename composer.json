@@ -16,7 +16,7 @@
     ],
     "require": {
         "php": "^7.1.3",
-        "symfony/console": "4.0"
+        "symfony/console": "^4.0"
     },
     "bin": [
         "gbc"
@@ -31,5 +31,6 @@
             "dev-master": "0.x-dev"
         }
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
