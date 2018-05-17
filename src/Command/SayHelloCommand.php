@@ -19,6 +19,9 @@ class SayHelloCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $output->writeln('Hello!');
+        $output->writeln('<info>Hello!</info>');
+        $output->writeln('<comment>Hello!</comment>');
+        $output->writeln('<question>Hello!</question>');
+        $output->writeln('<error>Hello!</error>');
     }
-
 }
