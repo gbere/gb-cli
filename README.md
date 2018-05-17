@@ -1,7 +1,8 @@
 gb-cli
 ======
 
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/1f7304fb-a44b-49b8-aab1-4ec23e156edc/small.png)](https://insight.sensiolabs.com/projects/1f7304fb-a44b-49b8-aab1-4ec23e156edc)
+
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg?longCache=true&style=for-the-badge)](https://en.wikipedia.org/wiki/MIT_License)
 [![Latest Version](https://img.shields.io/github/release/gbere/gb-cli.svg?longCache=true&style=for-the-badge)](https://github.com/gbere/gb-cli/releases)
 [![Total Downloads](https://img.shields.io/packagist/dt/gbere/gb-cli.svg?longCache=true&style=for-the-badge)](https://packagist.org/packages/gbere/gb-cli)
 
