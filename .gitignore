@@ -1,2 +1,11 @@
-/composer.lock
+
+###> symfony/framework-bundle ###
+/.env
+/public/bundles/
+/var/
 /vendor/
+###< symfony/framework-bundle ###
+
+###> Custom ###
+/composer.lock
+###< Custom ###

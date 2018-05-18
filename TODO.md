@@ -3,7 +3,7 @@ TODO LIST
 
 ## Core
 
-- Load commands from a YAML file
+- Load commands from a YAML file. [See huttopia/console-bundle](https://github.com/huttopia/console-bundle)
 ```yaml
 # Load all commands
 commands: ~
