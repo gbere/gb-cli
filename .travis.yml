@@ -10,20 +10,30 @@ cache:
 env:
   global:
     - SYMFONY_PHPUNIT_DIR="$HOME/symfony-bridge/.phpunit"
+    - OSX_PHP_BRANCH="7.1"
 
 matrix:
   fast_finish: true
   include:
-    - php: 7.1
-    - php: 7.2
-    - php: nightly
+    - os: linux
+      php: 7.1
+    - os: linux
+      php: 7.2
+    - os: linux
+      php: nightly
+    - os: osx
+      sudo: required
+      language: ruby
   allow_failures:
     - php: nightly
+    - os: osx
 
 before_install:
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then ./install-osx-requirements.sh; else true; fi
   - composer self-update
 
 install:
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then export PATH=/usr/local/php5/bin:$PATH; else true; fi
   - composer install
   - ./vendor/bin/simple-phpunit install
 
