@@ -22,5 +22,5 @@ $debug = false;
 $kernel = new Kernel($env, $debug);
 $app = new Application($kernel);
 $app->setName('gBere cli');
-$app->setVersion('0.3.2');
+$app->setVersion('0.3.4');
 $app->run($input);
