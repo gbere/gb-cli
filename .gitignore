@@ -9,3 +9,7 @@
 ###> Custom ###
 /composer.lock
 ###< Custom ###
+###> symfony/phpunit-bridge ###
+.phpunit
+/phpunit.xml
+###< symfony/phpunit-bridge ###
