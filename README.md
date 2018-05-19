@@ -1,10 +1,10 @@
 gb-cli
 ======
 
-
-[![license](https://img.shields.io/github/license/mashape/apistatus.svg?longCache=true&style=for-the-badge)](https://en.wikipedia.org/wiki/MIT_License)
+[![Build Status](https://img.shields.io/travis/gbere/gb-cli/master.svg?longCache=true&style=for-the-badge)](https://travis-ci.org/gbere/gb-cli)
 [![Latest Version](https://img.shields.io/github/release/gbere/gb-cli.svg?longCache=true&style=for-the-badge)](https://github.com/gbere/gb-cli/releases)
 [![Total Downloads](https://img.shields.io/packagist/dt/gbere/gb-cli.svg?longCache=true&style=for-the-badge)](https://packagist.org/packages/gbere/gb-cli)
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg?longCache=true&style=for-the-badge)](https://en.wikipedia.org/wiki/MIT_License)
 
 gBere cli utils powered by symfony/console
 
