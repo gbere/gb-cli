@@ -32,7 +32,7 @@
         "sort-packages": true
     },
     "bin": [
-        "bin/gbc"
+        "ggg"
     ],
     "autoload": {
         "psr-4": {

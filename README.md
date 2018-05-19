@@ -33,5 +33,5 @@ source ~/.bashrc
 ## Usage
 
 ```bash
-gbc
+ggg say:hello
 ```
