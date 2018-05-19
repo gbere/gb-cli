@@ -6,7 +6,7 @@ gb-cli
 [![Total Downloads](https://img.shields.io/packagist/dt/gbere/gb-cli.svg?longCache=true&style=for-the-badge)](https://packagist.org/packages/gbere/gb-cli)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg?longCache=true&style=for-the-badge)](https://en.wikipedia.org/wiki/MIT_License)
 
-gBere cli utils powered by symfony/console
+CLI utils powered by symfony/console
 
 ## Requirements
 
@@ -34,4 +34,6 @@ source ~/.bashrc
 
 ```bash
 ggg say:hello
+# Or
+ggg s:h
 ```

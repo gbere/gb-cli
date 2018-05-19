@@ -2,10 +2,10 @@
 
 namespace App\Tests\Command;
 
+use App\Command\SayHelloCommand;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Console\Tester\CommandTester;
-use App\Command\SayHelloCommand;
 
 class SayHelloCommandTest extends KernelTestCase
 {
@@ -18,7 +18,7 @@ class SayHelloCommandTest extends KernelTestCase
         $command = $application->find('say:hello');
         $commandTester = new CommandTester($command);
         $commandTester->execute([
-            'command'  => $command->getName(),
+            'command' => $command->getName(),
         ]);
 
         // the output of the command in the console
