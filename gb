@@ -4,16 +4,13 @@
 
 use App\Kernel;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
-use Symfony\Component\Console\Input\ArgvInput;
-use Symfony\Component\Debug\Debug;
-use Symfony\Component\Dotenv\Dotenv;
 
 set_time_limit(0);
 
 if (file_exists(__DIR__.'/../../autoload.php')) {
-    require __DIR__.'/../../../autoload.php';
+    require __DIR__.'/../../autoload.php';
 } else {
-    require __DIR__.'/../vendor/autoload.php';
+    require __DIR__.'/vendor/autoload.php';
 }
 
 if (!class_exists(Application::class)) {

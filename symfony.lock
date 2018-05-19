@@ -68,9 +68,6 @@
     "symfony/http-kernel": {
         "version": "v4.0.9"
     },
-    "symfony/lts": {
-        "version": "4-dev"
-    },
     "symfony/polyfill-mbstring": {
         "version": "v1.8.0"
     },
