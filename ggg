@@ -10,7 +10,7 @@ use Symfony\Component\Debug\Debug;
 set_time_limit(0);
 
 const APP_NAME      = 'gBere cli';
-const APP_VERSION   = '0.3.6';
+const APP_VERSION   = '0.3.8';
 
 if (file_exists(__DIR__.'/../../autoload.php')) {
     require __DIR__.'/../../autoload.php';
