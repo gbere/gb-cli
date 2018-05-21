@@ -16,6 +16,11 @@ class Kernel extends BaseKernel implements CompilerPassInterface
 
     const CONFIG_EXTS = '.{php,xml,yaml,yml}';
 
+    public function __construct($environment, $debug)
+    {
+        parent::__construct($environment, $debug);
+    }
+
     public function getCacheDir()
     {
         return $this->getProjectDir().'/var/cache/'.$this->environment;
@@ -28,9 +33,9 @@ class Kernel extends BaseKernel implements CompilerPassInterface
 
     public function process(ContainerBuilder $container)
     {
-        ('prod' === getenv('APP_ENV') &&
-            true === $container->hasDefinition('console.command_loader') ??
-            $container->removeDefinition('console.command_loader'));
+        if (true === $container->hasDefinition('console.command_loader')) {
+            $container->removeDefinition('console.command_loader');
+        }
     }
 
     public function registerBundles()
