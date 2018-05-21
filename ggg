@@ -2,15 +2,13 @@
 
 <?php
 
-use App\Kernel;
+use App\KernelProd;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
-use Symfony\Component\Console\Input\ArgvInput;
-use Symfony\Component\Debug\Debug;
 
 set_time_limit(0);
 
 const APP_NAME      = 'gBere cli';
-const APP_VERSION   = '0.3.10';
+const APP_VERSION   = '0.3.11';
 
 if (file_exists(__DIR__.'/../../autoload.php')) {
     require __DIR__.'/../../autoload.php';
@@ -22,19 +20,7 @@ if (!class_exists(Application::class)) {
     throw new \RuntimeException('You need to add "symfony/framework-bundle" as a Composer dependency.');
 }
 
-$input = new ArgvInput();
-$env = $input->getParameterOption(['--env', '-e'], 'prod', true);
-$debug = (bool) ('prod' !== $env) && !$input->hasParameterOption('--no-debug', true);
-
-if ($debug) {
-    umask(0000);
-
-    if (class_exists(Debug::class)) {
-        Debug::enable();
-    }
-}
-
-$kernel = new Kernel($env, $debug);
+$kernel = new KernelProd('prod', false);
 $app = new Application($kernel);
 $app->setName(APP_NAME);
 $app->setVersion(APP_VERSION);

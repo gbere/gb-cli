@@ -5,11 +5,12 @@ namespace App;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\Config\Resource\FileResource;
+use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel as BaseKernel;
 use Symfony\Component\Routing\RouteCollectionBuilder;
 
-class Kernel extends BaseKernel
+class KernelProd extends BaseKernel implements CompilerPassInterface
 {
     use MicroKernelTrait;
 
@@ -28,6 +29,14 @@ class Kernel extends BaseKernel
     public function getLogDir()
     {
         return $this->getProjectDir().'/var/log';
+    }
+
+    // KernelDev customization
+    public function process(ContainerBuilder $container)
+    {
+        if (true === $container->hasDefinition('console.command_loader')) {
+            $container->removeDefinition('console.command_loader');
+        }
     }
 
     public function registerBundles()

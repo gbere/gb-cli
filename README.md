@@ -33,7 +33,9 @@ source ~/.bashrc
 ## Usage
 
 ```bash
-ggg say:hello
-# Or
-ggg s:h
+# Without generic commands of symfony
+ggg
+
+# Debug mode (with symfony commands)
+ggd
 ```
