@@ -17,7 +17,6 @@ CLI utils powered by symfony/console
 ## Installing
 
 ```bash
-# Install gb-cli
 composer global require gbere/gb-cli
 ```
 
