@@ -24,4 +24,4 @@ $kernel = new KernelProd('prod', false);
 $app = new Application($kernel);
 $app->setName(APP_NAME);
 $app->setVersion(APP_VERSION);
-$app->run($input);
+$app->run();

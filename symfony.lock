@@ -11,18 +11,6 @@
             "ref": "cb4152ebcadbe620ea2261da1a1c5a9b8cea7672"
         }
     },
-    "doctrine/cache": {
-        "version": "v1.7.1"
-    },
-    "doctrine/collections": {
-        "version": "v1.5.0"
-    },
-    "doctrine/common": {
-        "version": "v2.8.1"
-    },
-    "doctrine/inflector": {
-        "version": "v1.3.0"
-    },
     "doctrine/lexer": {
         "version": "v1.0.1"
     },
@@ -49,15 +37,6 @@
     },
     "psr/simple-cache": {
         "version": "1.0.1"
-    },
-    "sensio/framework-extra-bundle": {
-        "version": "4.0",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "master",
-            "version": "4.0",
-            "ref": "aaddfdf43cdecd4cf91f992052d76c2cadc04543"
-        }
     },
     "symfony/cache": {
         "version": "v4.0.9"
@@ -127,6 +106,9 @@
             "version": "3.3",
             "ref": "179470cb6492db92dffee208cfdb436f175c93b4"
         }
+    },
+    "symfony/polyfill-ctype": {
+        "version": "v1.8.0"
     },
     "symfony/polyfill-mbstring": {
         "version": "v1.8.0"

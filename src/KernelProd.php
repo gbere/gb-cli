@@ -31,7 +31,7 @@ class KernelProd extends BaseKernel implements CompilerPassInterface
         return $this->getProjectDir().'/var/log';
     }
 
-    // KernelDev customization
+    // KernelProd customization
     public function process(ContainerBuilder $container)
     {
         if (true === $container->hasDefinition('console.command_loader')) {
