@@ -34,8 +34,16 @@ class KernelProd extends BaseKernel implements CompilerPassInterface
     // KernelProd customization
     public function process(ContainerBuilder $container)
     {
+        // removes generic commands of symfony
         if (true === $container->hasDefinition('console.command_loader')) {
             $container->removeDefinition('console.command_loader');
+        }
+        // removes debug argument resolver
+        if (true === $container->hasDefinition('debug.argument_resolver')) {
+            $container->removeDefinition('debug.argument_resolver');
+        }
+        if (true === $container->hasDefinition('debug.argument_resolver.inner')) {
+            $container->removeDefinition('debug.argument_resolver.inner');
         }
     }
 
