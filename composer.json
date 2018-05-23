@@ -1,12 +1,14 @@
 {
     "name": "gbere/gb-cli",
-    "description": "gBere cli utils",
+    "description": "gb-cli utils powered by symfony/console",
     "type": "library",
     "license": "MIT",
     "keywords": [
         "gBere",
         "cli",
-        "utils"
+        "utils",
+        "gb-cli",
+        "ggg"
     ],
     "authors": [
         {
