@@ -17,7 +17,7 @@ CLI utils powered by symfony/console
 ## Installing
 
 ```bash
-composer global require gbere/gb-cli
+composer global require "gbere/gb-cli=*"
 ```
 
 ## Setting up
@@ -38,3 +38,8 @@ ggg
 # Debug mode (with symfony commands)
 ggd
 ```
+## How to update
+
+````bash
+composer global update
+````
