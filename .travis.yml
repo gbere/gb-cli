@@ -26,7 +26,6 @@ matrix:
       language: ruby
   allow_failures:
     - php: nightly
-    - os: osx
 
 before_install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then .travis/before-install-osx.sh; else true; fi

@@ -15,23 +15,23 @@ class NetInfoCommand extends Command
     {
         $this->setName('net:info')
             ->setDescription('Network information')
-            ->setHelp('Network information (Tested on OSX)')
-            ->addOption('host', 'H', InputOption::VALUE_NONE, 'Shows local host name')
-            ->addOption('ip', 'i', InputOption::VALUE_NONE, 'Shows local IP')
-            ->addOption('ip-public', 'I', InputOption::VALUE_NONE, 'Shows public IP')
+            ->setHelp('Network information. Host, local and public IP')
+            ->addOption('host', 'H', InputOption::VALUE_NONE, 'Prints local host name')
+            ->addOption('ip', 'i', InputOption::VALUE_NONE, 'Prints local IP')
+            ->addOption('ip-public', 'I', InputOption::VALUE_NONE, 'Prints public IP')
         ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         if ($input->getOption('host')) {
-            $output->writeln($output->writeln($this->getOsxHostName()));
+            $output->writeln($output->writeln($this->getHostName()));
         }
         if ($input->getOption('ip')) {
-            $output->writeln($output->writeln($this->getOsxLocalIp()));
+            $output->writeln($output->writeln($this->getLocalIp()));
         }
         if ($input->getOption('ip-public')) {
-            $output->writeln($output->writeln($this->getOsxPublicIp()));
+            $output->writeln($output->writeln($this->getPublicIp()));
         }
         if (
             false === $input->getOption('host') &&
@@ -45,13 +45,13 @@ class NetInfoCommand extends Command
     private function getInfo(): array
     {
         return [
-            'Host name: '.$this->getOsxHostName(),
-            'Local IP : '.$this->getOsxLocalIp(),
-            'Public IP: '.$this->getOsxPublicIp(),
+            'Host name: '.$this->getHostName(),
+            'Local IP : '.$this->getLocalIp(),
+            'Public IP: '.$this->getPublicIp(),
         ];
     }
 
-    private function getOsxLocalIp(): string
+    private function getLocalIp(): string
     {
         $process = new Process(
             'echo $(ifconfig $(echo $(route -n get 0.0.0.0 | awk \'/interface: / {print $2}\')) | awk \'/inet / {print $2}\')'
@@ -64,7 +64,7 @@ class NetInfoCommand extends Command
         return trim($process->getOutput());
     }
 
-    private function getOsxPublicIp(): string
+    private function getPublicIp(): string
     {
         $process = new Process(
             'echo $(dig +short myip.opendns.com @resolver1.opendns.com)'
@@ -77,7 +77,7 @@ class NetInfoCommand extends Command
         return trim($process->getOutput());
     }
 
-    private function getOsxHostName(): string
+    private function getHostName(): string
     {
         $process = new Process(
             'echo $(hostname | sed \'s/.local//g\')'
