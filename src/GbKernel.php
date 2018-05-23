@@ -5,12 +5,11 @@ namespace App;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\Config\Resource\FileResource;
-use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel as BaseKernel;
 use Symfony\Component\Routing\RouteCollectionBuilder;
 
-class KernelProd extends BaseKernel implements CompilerPassInterface
+class GbKernel extends BaseKernel
 {
     use MicroKernelTrait;
 
@@ -29,22 +28,6 @@ class KernelProd extends BaseKernel implements CompilerPassInterface
     public function getLogDir()
     {
         return $this->getProjectDir().'/var/log';
-    }
-
-    // KernelProd customization
-    public function process(ContainerBuilder $container)
-    {
-        // removes generic commands of symfony
-        if (true === $container->hasDefinition('console.command_loader')) {
-            $container->removeDefinition('console.command_loader');
-        }
-        // removes debug argument resolver
-        if (true === $container->hasDefinition('debug.argument_resolver')) {
-            $container->removeDefinition('debug.argument_resolver');
-        }
-        if (true === $container->hasDefinition('debug.argument_resolver.inner')) {
-            $container->removeDefinition('debug.argument_resolver.inner');
-        }
     }
 
     public function registerBundles()
