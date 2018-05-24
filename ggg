@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php
 
-use App\GbKernel;
+use App\Kernel;
 use App\GbApplication;
 
 set_time_limit(0);
@@ -15,7 +15,7 @@ if (file_exists(__DIR__.'/../../autoload.php')) {
     require __DIR__.'/vendor/autoload.php';
 }
 
-$kernel = new GbKernel('prod', false);
+$kernel = new Kernel('prod', false);
 $app = new GbApplication($kernel);
 $app->setName(APP_NAME);
 $app->setVersion(APP_VERSION);
