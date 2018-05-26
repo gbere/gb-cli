@@ -18,7 +18,7 @@ class NetInfoCommand extends Command
             ->setHelp('Network information. Host, local and public IP')
             ->addOption('host', 'H', InputOption::VALUE_NONE, 'Prints local host name')
             ->addOption('ip', 'i', InputOption::VALUE_NONE, 'Prints local IP')
-            ->addOption('ip-public', 'I', InputOption::VALUE_NONE, 'Prints public IP')
+            ->addOption('public-ip', 'p', InputOption::VALUE_NONE, 'Prints public IP')
         ;
     }
 
@@ -30,13 +30,13 @@ class NetInfoCommand extends Command
         if ($input->getOption('ip')) {
             $output->writeln($output->writeln($this->getLocalIp()));
         }
-        if ($input->getOption('ip-public')) {
+        if ($input->getOption('public-ip')) {
             $output->writeln($output->writeln($this->getPublicIp()));
         }
         if (
             false === $input->getOption('host') &&
             false === $input->getOption('ip') &&
-            false === $input->getOption('ip-public')
+            false === $input->getOption('public-ip')
         ) {
             $output->writeln($this->getInfo());
         }
@@ -48,11 +48,13 @@ class NetInfoCommand extends Command
             'Host name: '.$this->getHostName(),
             'Local IP : '.$this->getLocalIp(),
             'Public IP: '.$this->getPublicIp(),
+            // TODO: ping to google
         ];
     }
 
     private function getLocalIp(): string
     {
+        // TODO: refactor
         $process = new Process(
             'echo $(ifconfig $(echo $(route -n get 0.0.0.0 | awk \'/interface: / {print $2}\')) | awk \'/inet / {print $2}\')'
         );
@@ -66,11 +68,11 @@ class NetInfoCommand extends Command
 
     private function getPublicIp(): string
     {
-        $process = new Process(
-            'echo $(dig +short myip.opendns.com @resolver1.opendns.com)'
-        );
+        $process = new Process([
+            'dig', '+short', 'myip.opendns.com', '@resolver1.opendns.com',
+        ]);
         $process->run();
-        if (!$process->isSuccessful()) {
+        if (false === $process->isSuccessful()) {
             throw new ProcessFailedException($process);
         }
 
@@ -79,9 +81,7 @@ class NetInfoCommand extends Command
 
     private function getHostName(): string
     {
-        $process = new Process(
-            'echo $(hostname | sed \'s/.local//g\')'
-        );
+        $process = new Process('hostname');
         $process->run();
         if (!$process->isSuccessful()) {
             throw new ProcessFailedException($process);
