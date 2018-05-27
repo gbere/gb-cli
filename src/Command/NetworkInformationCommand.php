@@ -48,8 +48,30 @@ class NetworkInformationCommand extends Command
             'Host name: '.$this->getHostName(),
             'Local IP : '.$this->getLocalIp(),
             'Public IP: '.$this->getPublicIp(),
-            // TODO: ping to google
+            'Ping Goog: '.$this->getPingTime(),
         ];
+    }
+
+    private function getPingTime(): string
+    {
+        $process = new Process([
+            'ping', '-c', '1', 'google.com',
+        ]);
+        $process->run();
+        if (false === $process->isSuccessful()) {
+            return '<comment>'.trim($process->getErrorOutput()).'</comment>>';
+        }
+
+        $return = $process->getOutput();
+        $needle = 'time=';
+        $posNeedle = mb_strpos($return, $needle);
+        if ($posNeedle) {
+            $return = mb_substr($return, $posNeedle + mb_strlen($needle));
+            $posEol = mb_strpos($return, PHP_EOL);
+            $return = mb_substr($return, 0, $posEol);
+        }
+
+        return '<info>'.$return.'</info>';
     }
 
     private function getLocalIp(): string
@@ -63,7 +85,7 @@ class NetworkInformationCommand extends Command
             throw new ProcessFailedException($process);
         }
 
-        return trim($process->getOutput());
+        return '<info>'.trim($process->getOutput()).'</info>';
     }
 
     private function getPublicIp(): string
@@ -73,10 +95,10 @@ class NetworkInformationCommand extends Command
         ]);
         $process->run();
         if (false === $process->isSuccessful()) {
-            throw new ProcessFailedException($process);
+            return '<comment>'.trim($process->getErrorOutput()).'</comment>';
         }
 
-        return trim($process->getOutput());
+        return '<info>'.trim($process->getOutput()).'</info>';
     }
 
     private function getHostName(): string
@@ -87,6 +109,6 @@ class NetworkInformationCommand extends Command
             throw new ProcessFailedException($process);
         }
 
-        return trim($process->getOutput());
+        return '<info>'.trim($process->getOutput()).'</info>';
     }
 }
