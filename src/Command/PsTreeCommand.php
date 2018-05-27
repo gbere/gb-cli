@@ -26,7 +26,7 @@ class PsTreeCommand extends Command
     private function getProcessTree(): string
     {
         $process = new Process([
-            'pstree', '-g', '2',
+            'pstree',
         ]);
         $process->run();
         if (false === $process->isSuccessful()) {
