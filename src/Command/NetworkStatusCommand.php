@@ -8,31 +8,31 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 
-class PsTreeCommand extends Command
+class NetworkStatusCommand extends Command
 {
     protected function configure()
     {
-        $this->setName('ps:tree')
-            ->setDescription('Display a tree of processes')
-            ->setHelp('Shows running processes as a tree. The tree is rooted at either pid or init if pid is omitted.')
+        $this->setName('network:status')
+            ->setDescription('List all network connections')
+            ->setHelp('List all the network connections opened')
         ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $output->writeln($this->getProcessTree());
+        $output->writeln($this->getConnections());
     }
 
-    private function getProcessTree(): string
+    private function getConnections(): string
     {
         $process = new Process([
-            'pstree',
+            'lsof', '-i',
         ]);
         $process->run();
         if (false === $process->isSuccessful()) {
             throw new ProcessFailedException($process);
         }
 
-        return $process->getOutput();
+        return trim($process->getOutput());
     }
 }

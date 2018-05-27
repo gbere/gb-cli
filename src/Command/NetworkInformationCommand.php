@@ -9,13 +9,13 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 
-class NetInfoCommand extends Command
+class NetworkInformationCommand extends Command
 {
     protected function configure()
     {
-        $this->setName('net:info')
-            ->setDescription('Network information')
-            ->setHelp('Network information. Host, local and public IP')
+        $this->setName('network:information')
+            ->setDescription('Displays network information')
+            ->setHelp('Displays network network information. Host, local and public IP')
             ->addOption('host', 'H', InputOption::VALUE_NONE, 'Prints local host name')
             ->addOption('ip', 'i', InputOption::VALUE_NONE, 'Prints local IP')
             ->addOption('public-ip', 'p', InputOption::VALUE_NONE, 'Prints public IP')

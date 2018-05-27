@@ -2,7 +2,7 @@
 
 namespace App\Tests\Command;
 
-use App\Command\PsStatCommand;
+use App\Command\ProcessStatusCommand;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Console\Tester\CommandTester;
@@ -13,15 +13,14 @@ class PsStatCommandTest extends KernelTestCase
     {
         $kernel = self::bootKernel();
         $application = new Application($kernel);
-        $application->add(new PsStatCommand());
+        $application->add(new ProcessStatusCommand());
 
-        $command = $application->find('ps:stat');
+        $command = $application->find('process:status');
         $commandTester = new CommandTester($command);
         $commandTester->execute([
             'command' => $command->getName(),
         ]);
 
-        // the output of the command in the console
         $output = $commandTester->getDisplay();
         $this->assertNotEmpty($output);
     }

@@ -2,7 +2,7 @@
 
 namespace App\Tests\Command;
 
-use App\Command\NetInfoCommand;
+use App\Command\NetworkInformationCommand;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Console\Tester\CommandTester;
@@ -13,10 +13,12 @@ class NetInfoCommandTest extends KernelTestCase
     {
         $kernel = self::bootKernel();
         $application = new Application($kernel);
-        $application->add(new NetInfoCommand());
+        $application->add(new NetworkInformationCommand());
 
-        $command = $application->find('net:info');
+        $command = $application->find('network:information');
         $commandTester = new CommandTester($command);
+
+        //TODO: test all options (host, ip, public-ip, ping)
         $commandTester->execute([
             'command' => $command->getName(),
         ]);

@@ -8,11 +8,11 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 
-class PsStatCommand extends Command
+class ProcessStatusCommand extends Command
 {
     protected function configure()
     {
-        $this->setName('ps:stat')
+        $this->setName('process:status')
             ->setDescription('List all process')
             ->setHelp('List all the process')
         ;
