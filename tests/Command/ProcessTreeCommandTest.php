@@ -7,7 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Console\Tester\CommandTester;
 
-class PsTreeCommandTest extends KernelTestCase
+class ProcessTreeCommandTest extends KernelTestCase
 {
     public function testExecute()
     {
