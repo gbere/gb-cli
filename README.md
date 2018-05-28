@@ -13,6 +13,7 @@ CLI utils powered by symfony/console
 - cURL
 - Composer
 - PHP >=7.1.3
+- PHP-XML
 
 ## Installing
 
@@ -26,6 +27,8 @@ If the bin folder of your Composer isn’t in the PATH variable, add it:
 
 ```bash
 echo "export PATH="$HOME/.composer/vendor/bin:$PATH" " >> ~/.bashrc
+# Or on Ubuntu 18.04
+echo "export PATH="$HOME/.config/composer/vendor/bin:$PATH" " >> ~/.bashrc
 source ~/.bashrc
 ```
 
