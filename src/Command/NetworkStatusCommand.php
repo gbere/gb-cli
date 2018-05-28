@@ -13,7 +13,7 @@ class NetworkStatusCommand extends Command
     protected function configure()
     {
         $this->setName('network:status')
-            ->setDescription('List all network connections')
+            ->setDescription('List all network connections (sudo required)')
             ->setHelp('List all the network connections opened')
         ;
     }
@@ -26,7 +26,7 @@ class NetworkStatusCommand extends Command
     private function getConnections(): string
     {
         $process = new Process([
-            'lsof', '-i',
+            'sudo', 'lsof', '-i',
         ]);
         $process->run();
         if (false === $process->isSuccessful()) {

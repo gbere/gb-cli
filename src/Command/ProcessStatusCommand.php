@@ -13,7 +13,7 @@ class ProcessStatusCommand extends Command
     protected function configure()
     {
         $this->setName('process:status')
-            ->setDescription('List all process')
+            ->setDescription('List all process (sudo required)')
             ->setHelp('List all the process')
         ;
     }
@@ -26,7 +26,7 @@ class ProcessStatusCommand extends Command
     private function getProcessStat(): string
     {
         $process = new Process([
-            'ps', 'axu',
+            'sudo', 'ps', 'axu',
         ]);
         $process->run();
         if (false === $process->isSuccessful()) {
