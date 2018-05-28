@@ -1,6 +1,6 @@
 language: php
 
-sudo: false
+sudo: required
 
 cache:
   directories:
@@ -22,7 +22,6 @@ matrix:
     - os: linux
       php: nightly
     - os: osx
-      sudo: required
       language: ruby
   allow_failures:
     - php: nightly
