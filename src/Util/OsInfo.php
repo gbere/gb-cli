@@ -5,7 +5,7 @@ namespace App\Util;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 
-class Os
+class OsInfo
 {
     const UNKNOWN = 'unknown';
     const LINUX = 'linux';
