@@ -25,9 +25,9 @@ class NetworkStatusCommand extends Command
 
     private function getConnections(): string
     {
-        $process = new Process([
+        $process = (new Process([
             'sudo', 'lsof', '-i',
-        ]);
+        ]))->setTty(true);
         $process->run();
         if (false === $process->isSuccessful()) {
             throw new ProcessFailedException($process);

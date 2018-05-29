@@ -25,9 +25,9 @@ class MountStatusCommand extends Command
 
     private function getMountPoints(): string
     {
-        $process = new Process([
+        $process = (new Process([
             'df', '-a',
-        ]);
+        ]))->setTty(true);
         $process->run();
         if (false === $process->isSuccessful()) {
             throw new ProcessFailedException($process);

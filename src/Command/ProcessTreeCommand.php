@@ -25,9 +25,9 @@ class ProcessTreeCommand extends Command
 
     private function getProcessTree(): string
     {
-        $process = new Process([
+        $process = (new Process([
             'pstree',
-        ]);
+        ]))->setTty(true);
         $process->run();
         if (false === $process->isSuccessful()) {
             throw new ProcessFailedException($process);

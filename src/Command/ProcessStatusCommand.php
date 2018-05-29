@@ -25,9 +25,9 @@ class ProcessStatusCommand extends Command
 
     private function getProcessStat(): string
     {
-        $process = new Process([
+        $process = (new Process([
             'sudo', 'ps', 'axu',
-        ]);
+        ]))->setTty(true);
         $process->run();
         if (false === $process->isSuccessful()) {
             throw new ProcessFailedException($process);
