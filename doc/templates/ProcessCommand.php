@@ -8,16 +8,16 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 
-class ProcessStatusCommand extends Command
+class ProcessCommand extends Command
 {
-    const COMMAND = ['sudo', 'ps', 'axu'];
-    const ERROR = 'The process failed :(';
+    const COMMAND = ['echo', 'hi'];
+    const ERROR = 'Error when greeting d(O_o)p';
 
     protected function configure()
     {
-        $this->setName('process:status')
-            ->setDescription('List all process (sudo required)')
-            ->setHelp('List all the process')
+        $this->setName('say:hi')
+            ->setDescription('Say hi')
+            ->setHelp('Amazing!!! Say hi!!!')
         ;
     }
 
