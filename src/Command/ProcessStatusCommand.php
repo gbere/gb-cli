@@ -11,7 +11,7 @@ use Symfony\Component\Process\Process;
 class ProcessStatusCommand extends Command
 {
     const COMMAND = ['sudo', 'ps', 'axu'];
-    const ERROR = 'The process failed :(';
+    const ERROR = 'Oops! something went wrong';
 
     protected function configure()
     {

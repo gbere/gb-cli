@@ -10,6 +10,9 @@ use Symfony\Component\Process\Process;
 
 class MountStatusCommand extends Command
 {
+    const COMMAND = ['df', '-a'];
+    const ERROR = 'Oops! something went wrong';
+
     protected function configure()
     {
         $this->setName('mount:status')
@@ -20,19 +23,22 @@ class MountStatusCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $output->writeln($this->getMountPoints());
-    }
+        $process = (new Process(self::COMMAND))->setTty(true);
+        if (
+            OutputInterface::VERBOSITY_VERY_VERBOSE === $output->getVerbosity() ||
+            OutputInterface::VERBOSITY_DEBUG === $output->getVerbosity()
+        ) {
+            $helper = $this->getHelper('process');
+            $helper->run($output, $process, self::ERROR);
 
-    private function getMountPoints(): string
-    {
-        $process = (new Process([
-            'df', '-a',
-        ]))->setTty(true);
+            return;
+        }
+
         $process->run();
         if (false === $process->isSuccessful()) {
             throw new ProcessFailedException($process);
         }
 
-        return $process->getOutput();
+        $output->writeln($process->getOutput());
     }
 }

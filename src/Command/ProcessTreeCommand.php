@@ -10,6 +10,9 @@ use Symfony\Component\Process\Process;
 
 class ProcessTreeCommand extends Command
 {
+    const COMMAND = 'pstree';
+    const ERROR = 'Oops! something went wrong';
+
     protected function configure()
     {
         $this->setName('process:tree')
@@ -20,19 +23,22 @@ class ProcessTreeCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $output->writeln($this->getProcessTree());
-    }
+        $process = (new Process(self::COMMAND))->setTty(true);
+        if (
+            OutputInterface::VERBOSITY_VERY_VERBOSE === $output->getVerbosity() ||
+            OutputInterface::VERBOSITY_DEBUG === $output->getVerbosity()
+        ) {
+            $helper = $this->getHelper('process');
+            $helper->run($output, $process, self::ERROR);
 
-    private function getProcessTree(): string
-    {
-        $process = (new Process([
-            'pstree',
-        ]))->setTty(true);
+            return;
+        }
+
         $process->run();
         if (false === $process->isSuccessful()) {
             throw new ProcessFailedException($process);
         }
 
-        return $process->getOutput();
+        $output->writeln($process->getOutput());
     }
 }

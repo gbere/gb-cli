@@ -10,6 +10,9 @@ use Symfony\Component\Process\Process;
 
 class NetworkStatusCommand extends Command
 {
+    const COMMAND = ['sudo', 'lsof', '-i'];
+    const ERROR = 'Oops! something went wrong';
+
     protected function configure()
     {
         $this->setName('network:status')
@@ -20,19 +23,22 @@ class NetworkStatusCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $output->writeln($this->getConnections());
-    }
+        $process = (new Process(self::COMMAND))->setTty(true);
+        if (
+            OutputInterface::VERBOSITY_VERY_VERBOSE === $output->getVerbosity() ||
+            OutputInterface::VERBOSITY_DEBUG === $output->getVerbosity()
+        ) {
+            $helper = $this->getHelper('process');
+            $helper->run($output, $process, self::ERROR);
 
-    private function getConnections(): string
-    {
-        $process = (new Process([
-            'sudo', 'lsof', '-i',
-        ]))->setTty(true);
+            return;
+        }
+
         $process->run();
         if (false === $process->isSuccessful()) {
             throw new ProcessFailedException($process);
         }
 
-        return trim($process->getOutput());
+        $output->writeln($process->getOutput());
     }
 }
