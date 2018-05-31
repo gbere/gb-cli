@@ -23,7 +23,7 @@ class ProcessTreeCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $process = (new Process(self::COMMAND))->setTty(true);
+        $process = (new Process(self::COMMAND))->setTty(Process::isTtySupported());
         if (
             OutputInterface::VERBOSITY_VERY_VERBOSE === $output->getVerbosity() ||
             OutputInterface::VERBOSITY_DEBUG === $output->getVerbosity()
