@@ -10,14 +10,14 @@ use Symfony\Component\Process\Process;
 
 class MountStatusCommand extends Command
 {
-    const COMMAND = ['df', '-a'];
+    const COMMAND = ['df', '-h'];
     const ERROR = 'Oops! something went wrong';
 
     protected function configure()
     {
         $this->setName('mount:status')
-            ->setDescription('List all mount points')
-            ->setHelp('List all the mount points')
+            ->setDescription('List all human readable mount points')
+            ->setHelp('List all human readable mount points')
         ;
     }
 
