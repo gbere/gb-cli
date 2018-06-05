@@ -12,7 +12,7 @@ use Symfony\Component\Process\Process;
 class SystemInformationCommand extends ContainerAwareCommand
 {
     const COMMAND = [
-        OsInfo::OSX   => 'osx.sh',
+        OsInfo::OSX => 'osx.sh',
         OsInfo::LINUX => 'linux.sh',
     ];
     const ERROR = 'Oops! something went wrong';
