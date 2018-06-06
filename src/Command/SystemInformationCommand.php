@@ -16,11 +16,7 @@ class SystemInformationCommand extends ContainerAwareCommand
         OsInfo::LINUX => 'linux.sh',
     ];
     const ERROR = 'Oops! something went wrong';
-
-    public function __construct($name = null)
-    {
-        parent::__construct($name);
-    }
+    const PATH = '/../ash/SystemInformation/';
 
     protected function configure()
     {
@@ -32,11 +28,8 @@ class SystemInformationCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $process = (new Process(
-            $this->getContainer()->get('kernel')->getRootDir().
-            '/../ash/SystemInformation/'.
-            self::COMMAND[(new OsInfo())->getOs()]))
-            ->setTty(Process::isTtySupported());
+        $process = (new Process($this->getContainer()->get('kernel')->getRootDir().self::PATH.
+            self::COMMAND[(new OsInfo())->getOs()]))->setTty(Process::isTtySupported());
         if (
             OutputInterface::VERBOSITY_VERY_VERBOSE === $output->getVerbosity() ||
             OutputInterface::VERBOSITY_DEBUG === $output->getVerbosity()

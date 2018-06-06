@@ -20,5 +20,4 @@ ${textColor}Shell:  ${normal}${shell}${normal}
 ${textColor}Termi.: ${normal}${terminal}${normal}
 ${textColor}CPU:    ${normal}${cpu}${normal}
 ${textColor}Memory: ${normal}${ram}${normal}
-${textColor}Disk:   ${normal}${disk}${normal}
-"
+${textColor}Disk:   ${normal}${disk}${normal}"
