@@ -3,6 +3,8 @@
 namespace App\Command;
 
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Helper\Table;
+use Symfony\Component\Console\Helper\TableCell;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -38,7 +40,17 @@ class NetworkInformationCommand extends Command
             false === $input->getOption('ip') &&
             false === $input->getOption('public-ip')
         ) {
-            $output->writeln($this->getInfo());
+            $table = new Table($output);
+            $table->setHeaders([
+                [new TableCell('network:information', ['colspan' => 2])],
+            ]);
+            $table->setRows([
+                ['Host name', $this->getHostName()],
+                ['Local IP', $this->getLocalIp()],
+                ['Public IP', $this->getPublicIp()],
+                ['Ping Google', $this->getPingTime()],
+            ]);
+            $table->render();
         }
     }
 
@@ -71,7 +83,7 @@ class NetworkInformationCommand extends Command
             $return = mb_substr($return, 0, $posEol);
         }
 
-        return '<info>'.$return.'</info>';
+        return trim($return);
     }
 
     private function getLocalIp(): string
@@ -85,7 +97,7 @@ class NetworkInformationCommand extends Command
             throw new ProcessFailedException($process);
         }
 
-        return '<info>'.trim($process->getOutput()).'</info>';
+        return trim($process->getOutput());
     }
 
     private function getPublicIp(): string
@@ -98,7 +110,7 @@ class NetworkInformationCommand extends Command
             return '<comment>'.trim($process->getErrorOutput()).'</comment>';
         }
 
-        return '<info>'.trim($process->getOutput()).'</info>';
+        return trim($process->getOutput());
     }
 
     private function getHostName(): string
@@ -109,6 +121,6 @@ class NetworkInformationCommand extends Command
             throw new ProcessFailedException($process);
         }
 
-        return '<info>'.trim($process->getOutput()).'</info>';
+        return trim($process->getOutput());
     }
 }
