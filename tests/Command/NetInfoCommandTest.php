@@ -24,8 +24,8 @@ class NetInfoCommandTest extends KernelTestCase
         ]);
 
         $output = $commandTester->getDisplay();
-        $this->assertContains('Host name:', $output);
-        $this->assertContains('Local IP :', $output);
-        $this->assertContains('Public IP:', $output);
+        $this->assertContains('Local IP', $output);
+        $this->assertContains('Public IP', $output);
+        $this->assertContains('Ping Google', $output);
     }
 }
